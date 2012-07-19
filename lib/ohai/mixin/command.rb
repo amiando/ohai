@@ -167,7 +167,7 @@ module Ohai
           ps.last.fcntl(Fcntl::F_SETFD, Fcntl::FD_CLOEXEC)
 
           cid = fork {
-            Process.setsid
+            #Process.setsid #Quickhack: Dont call setsid to prevent kernel panic on EC2
 
             pw.last.close
             STDIN.reopen pw.first
